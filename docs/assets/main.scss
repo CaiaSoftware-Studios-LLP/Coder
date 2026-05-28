@@ -69,15 +69,6 @@ body {
     -webkit-text-fill-color: transparent;
   }
 }
-      #ff7043 78%,
-      #ffd54f 100%
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent !important;
-    -webkit-text-fill-color: transparent;
-  }
-}
 
 .site-nav .menu-icon {
   color: $caia-muted;
@@ -140,15 +131,6 @@ pre,
 pre code {
   background-color: $caia-code-bg;
   border-color: $caia-border;
-  color: #e2d9f5;  background-color: $caia-code-bg;
-  border: 1px solid $caia-border;
-  color: #e2d9f5;
-}
-
-pre,
-pre code {
-  background-color: $caia-code-bg;
-  border-color: $caia-border;
   color: #e2d9f5;
 }
 
@@ -185,7 +167,6 @@ table tbody tr:nth-child(even) {
   background-color: $caia-bg !important;
 }
 
-/* Slightly lift every other row for scanability (still dark, not white) */
 table tbody tr:nth-child(even) {
   background-color: lighten($caia-bg, 3%) !important;
 }
@@ -199,22 +180,11 @@ table tbody th {
   color: $caia-text !important;
 }
 
-/* Inline code inside cells keeps dark chip style */
 table code {
   background-color: $caia-code-bg !important;
   color: #e2d9f5 !important;
 }
 
-/* Minima blog layout uses .post-content — mirror table rules */
-.post-content table,
-.post-content table tbody tr,
-.post-content table tbody tr:nth-child(odd),
-.post-content table tbody tr:nth-child(even) {
-  background-color: $caia-bg !important;
-}  color: #e2d9f5 !important;
-}
-
-/* Minima blog layout uses .post-content — mirror table rules */
 .post-content table,
 .post-content table tbody tr,
 .post-content table tbody tr:nth-child(odd),
@@ -240,7 +210,6 @@ table code {
   background-color: $caia-surface !important;
 }
 
-/* Kill stray light panels */
 .page-content figure,
 .post-content figure {
   background-color: transparent;
@@ -264,7 +233,6 @@ hr {
   color: $caia-muted;
 }
 
-/* Rouge / highlight blocks */
 .highlight {
   background-color: $caia-code-bg !important;
   border: 1px solid $caia-border;
