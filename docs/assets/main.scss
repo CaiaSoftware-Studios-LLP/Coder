@@ -1,0 +1,275 @@
+---
+# Extends Minima; custom palette applied after theme defaults.
+---
+
+@import "minima";
+
+/* Charcoal purple background (~#121016) — docs site theme */
+$caia-bg: #121016;
+$caia-surface: #1a1822;
+$caia-text: #eceaf2;
+$caia-muted: #9c96aa;
+$caia-border: #2d2838;
+$caia-link: #c4b5fd;
+$caia-link-hover: #e9d5ff;
+$caia-code-bg: #0d0b12;
+
+html {
+  background-color: $caia-bg;
+}
+
+body {
+  background-color: $caia-bg;
+  color: $caia-text;
+}
+
+.site-header {
+  border-top: 0;
+  border-bottom: 1px solid $caia-border;
+  background-color: $caia-surface;
+}
+
+/* Header: Caia mark (PNG) + “Coder” gradient wordmark */
+.site-title-brand,
+.site-title-brand:visited {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.site-logo {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  display: block;
+  object-fit: contain;
+}
+
+/* “Coder” — same gradient as product wordmark; logo image carries Caia colors */
+.site-title-wordmark {
+  line-height: 1.2;
+  color: #c4b5fd !important;
+}
+
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .site-title-wordmark {
+    background: linear-gradient(
+      135deg,
+      #5c6bc0 0%,
+      #ab47bc 28%,
+      #ec407a 52%,
+      #ff7043 78%,
+      #ffd54f 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+    -webkit-text-fill-color: transparent;
+  }
+}
+      #ff7043 78%,
+      #ffd54f 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.site-nav .menu-icon {
+  color: $caia-muted;
+}
+
+.site-nav .menu-icon svg path {
+  fill: currentColor;
+}
+
+.site-nav .page-link {
+  color: $caia-muted;
+}
+
+.site-nav .page-link:hover {
+  color: $caia-link-hover;
+}
+
+.page-content {
+  a {
+    color: $caia-link;
+
+    &:visited {
+      color: mix($caia-link, $caia-text, 75%);
+    }
+
+    &:hover {
+      color: $caia-link-hover;
+    }
+  }
+}
+
+.site-footer {
+  border-top: 1px solid $caia-border;
+  background-color: $caia-surface;
+  color: $caia-muted;
+}
+
+.footer-heading,
+.site-footer a,
+.site-footer a:visited {
+  color: $caia-muted;
+}
+
+.site-footer a:hover {
+  color: $caia-link-hover;
+}
+
+blockquote {
+  border-left-color: $caia-border;
+  color: $caia-muted;
+}
+
+code {
+  background-color: $caia-code-bg;
+  border: 1px solid $caia-border;
+  color: #e2d9f5;
+}
+
+pre,
+pre code {
+  background-color: $caia-code-bg;
+  border-color: $caia-border;
+  color: #e2d9f5;  background-color: $caia-code-bg;
+  border: 1px solid $caia-border;
+  color: #e2d9f5;
+}
+
+pre,
+pre code {
+  background-color: $caia-code-bg;
+  border-color: $caia-border;
+  color: #e2d9f5;
+}
+
+pre {
+  border: 1px solid $caia-border;
+}
+
+/* Tables: Minima stripes alternate rows white — force dark surfaces everywhere */
+.page-content table,
+table {
+  border: 1px solid $caia-border;
+  color: $caia-text;
+  background-color: $caia-bg !important;
+}
+
+table th,
+table td {
+  border: 1px solid $caia-border;
+  background-color: transparent !important;
+  color: $caia-text !important;
+}
+
+table thead th {
+  background-color: $caia-surface !important;
+  color: $caia-text !important;
+}
+
+table tbody tr {
+  background-color: $caia-bg !important;
+}
+
+table tbody tr:nth-child(odd),
+table tbody tr:nth-child(even) {
+  background-color: $caia-bg !important;
+}
+
+/* Slightly lift every other row for scanability (still dark, not white) */
+table tbody tr:nth-child(even) {
+  background-color: lighten($caia-bg, 3%) !important;
+}
+
+table tbody tr:hover {
+  background-color: $caia-surface !important;
+}
+
+table tbody th {
+  background-color: $caia-surface !important;
+  color: $caia-text !important;
+}
+
+/* Inline code inside cells keeps dark chip style */
+table code {
+  background-color: $caia-code-bg !important;
+  color: #e2d9f5 !important;
+}
+
+/* Minima blog layout uses .post-content — mirror table rules */
+.post-content table,
+.post-content table tbody tr,
+.post-content table tbody tr:nth-child(odd),
+.post-content table tbody tr:nth-child(even) {
+  background-color: $caia-bg !important;
+}  color: #e2d9f5 !important;
+}
+
+/* Minima blog layout uses .post-content — mirror table rules */
+.post-content table,
+.post-content table tbody tr,
+.post-content table tbody tr:nth-child(odd),
+.post-content table tbody tr:nth-child(even) {
+  background-color: $caia-bg !important;
+}
+
+.post-content table tbody tr:nth-child(even) {
+  background-color: lighten($caia-bg, 3%) !important;
+}
+
+.post-content table tbody tr:hover {
+  background-color: $caia-surface !important;
+}
+
+.post-content table th,
+.post-content table td {
+  background-color: transparent !important;
+  color: $caia-text !important;
+}
+
+.post-content table thead th {
+  background-color: $caia-surface !important;
+}
+
+/* Kill stray light panels */
+.page-content figure,
+.post-content figure {
+  background-color: transparent;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $caia-text;
+}
+
+hr {
+  background-color: $caia-border;
+}
+
+.post-meta,
+.post-list-heading {
+  color: $caia-muted;
+}
+
+/* Rouge / highlight blocks */
+.highlight {
+  background-color: $caia-code-bg !important;
+  border: 1px solid $caia-border;
+}
+
+.highlighter-rouge .highlight {
+  background-color: $caia-code-bg !important;
+}

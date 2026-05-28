@@ -1,0 +1,11 @@
+# Jekyll build output
+docs/_site/
+docs/.jekyll-cache/
+docs/.sass-cache/
+
+# Bundler
+vendor/bundle/
+
+# Local tooling (not published)
+.caia/
+.memg/

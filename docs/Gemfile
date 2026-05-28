@@ -1,0 +1,4 @@
+source "https://rubygems.org"
+
+# Pin to GitHub Pages–compatible gems when building locally or in Actions.
+gem "github-pages", group: :jekyll_plugins

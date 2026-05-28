@@ -1,0 +1,31 @@
+# Jekyll config for GitHub Pages (publish from /docs on main).
+# After first deploy: Settings → Pages → Build and deployment → GitHub Actions
+#   OR (classic) Source: Deploy from a branch → /docs + Jekyll.
+#
+# Project site (canonical): https://CaiaSoftware-Studios-LLP.github.io/Coder/
+# If org/repo changes, update baseurl/url and README.md + WELCOME.md canonical tables.
+baseurl: "/Coder"
+url: "https://CaiaSoftware-Studios-LLP.github.io"
+
+title: Caia Coder
+description: User documentation for the Caia Coder agent UI, marketplace, vault, scheduler, and integrations.
+
+theme: minima
+permalink: pretty
+
+header_pages:
+  - index.md
+  - audiences.md
+  - getting-started.md
+  - account-billing.md
+  - ide-features.md
+  - marketplace.md
+  - local-vault.md
+  - scheduler.md
+  - integrations/index.md
+  - models.md
+  - deployment.md
+  - troubleshooting.md
+
+minima:
+  skin: auto

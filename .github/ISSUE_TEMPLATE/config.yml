@@ -1,0 +1,20 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://CaiaSoftware-Studios-LLP.github.io/Coder/
+    about: User and company documentation for Caia Coder subscribers.
+  - name: Changelog
+    url: https://github.com/CaiaSoftware-Studios-LLP/Coder/blob/main/CHANGELOG.md
+    about: Public release notes for the subscription product.
+  - name: Ask a question (Discussions)
+    url: https://github.com/CaiaSoftware-Studios-LLP/Coder/discussions/categories/q-a
+    about: How-to and configuration help from the community.
+  - name: Share an idea (Discussions)
+    url: https://github.com/CaiaSoftware-Studios-LLP/Coder/discussions/categories/ideas
+    about: Product suggestions and workflows—not tracked bugs.
+  - name: Billing & account portal
+    url: https://account.coder.caiaplatform.com
+    about: Sign-up, plans, and payment—not GitHub Issues.
+  - name: Security (email only)
+    url: mailto:security@caiaplatform.com
+    about: Report vulnerabilities privately—do not use public Issues.

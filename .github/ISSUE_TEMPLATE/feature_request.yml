@@ -1,0 +1,49 @@
+name: Feature Request
+description: Suggest an improvement to the Caia Coder subscription product
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Caia Coder** is a subscription product. Use this template for **product features** you want the team to consider.
+
+        - **Questions / workflows** → [Discussions](https://github.com/CaiaSoftware-Studios-LLP/Coder/discussions)
+        - **Documentation fixes** → pull request to `docs/` or an Issue labeled documentation
+
+        Docs: https://CaiaSoftware-Studios-LLP.github.io/Coder/
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or use case
+      description: What problem are you trying to solve? Who benefits (developer, SRE, billing owner, etc.)?
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: What would you like Caia Coder to do?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Workarounds you tried (integrations, scheduler, BYOM, etc.).
+  - type: dropdown
+    id: plan
+    attributes:
+      label: Your plan (if relevant)
+      options:
+        - BYOM
+        - Basic
+        - Pro
+        - Pro+
+        - Enterprise
+        - Not sure / N/A
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Screenshots, links to docs, or related Discussions/Issues.

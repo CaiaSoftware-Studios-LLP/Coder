@@ -1,0 +1,6 @@
+# Local preview only — do not use for GitHub Pages.
+# Run:  bundle exec jekyll serve --config _config.yml,_config_local.yml
+# Or:  jekyll serve --host 0.0.0.0 --config _config.yml,_config_local.yml
+# Open: http://127.0.0.1:4000/  (no /caia-coder path)
+baseurl: ""
+url: "http://127.0.0.1:4000"

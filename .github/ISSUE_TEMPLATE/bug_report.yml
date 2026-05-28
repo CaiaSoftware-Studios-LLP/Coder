@@ -1,0 +1,84 @@
+name: Bug Report
+description: Report a problem with the Caia Coder subscription product
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Caia Coder** is a subscription product. This repository is for **bugs and feedback**—not application source code.
+
+        - **How-to / ideas** → [Discussions](https://github.com/CaiaSoftware-Studios-LLP/Coder/discussions)
+        - **Billing / account** → [account.coder.caiaplatform.com](https://account.coder.caiaplatform.com) or billing@caiaplatform.com
+        - **Security** → security@caiaplatform.com ([policy](https://github.com/CaiaSoftware-Studios-LLP/Coder/blob/main/SECURITY.md)) — do not file public issues for vulnerabilities
+
+        Docs: https://CaiaSoftware-Studios-LLP.github.io/Coder/
+  - type: dropdown
+    id: plan
+    attributes:
+      label: Subscription plan
+      options:
+        - BYOM
+        - Basic
+        - Pro
+        - Pro+
+        - Enterprise
+        - Unknown / not applicable
+    validations:
+      required: true
+  - type: dropdown
+    id: deployment
+    attributes:
+      label: How do you use Caia Coder?
+      options:
+        - Caia SaaS (browser)
+        - Desktop app (operator-provided)
+        - Self-hosted (Docker/Kubernetes)
+        - Unknown
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What went wrong?
+      description: A clear description of the bug. Include error messages if any.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Numbered steps so we can reproduce the issue.
+      value: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+      description: What you expected to happen instead.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, browser, and app version if known (see [CHANGELOG](https://github.com/CaiaSoftware-Studios-LLP/Coder/blob/main/CHANGELOG.md)).
+      value: |
+        - OS:
+        - Browser (if web):
+        - Caia Coder version (if known):
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Confirmation
+      options:
+        - label: I have searched existing Issues and Discussions for duplicates
+          required: true
+        - label: I have not included secrets, API keys, or customer data in this report
+          required: true
