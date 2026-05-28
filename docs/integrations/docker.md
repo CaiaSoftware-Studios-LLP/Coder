@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: docs
 title: Docker
 permalink: /integrations/docker/
 ---

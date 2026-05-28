@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: docs-home
 title: Documentation
 permalink: /
 ---

@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: docs
 title: Local vault
 permalink: /local-vault/
 ---

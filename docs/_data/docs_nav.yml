@@ -1,0 +1,56 @@
+# Left-hand navigation for the public community documentation site.
+sections:
+  - title: Overview
+    items:
+      - title: Documentation home
+        url: /
+      - title: Documentation by audience
+        url: /audiences/
+  - title: Onboarding & account
+    items:
+      - title: Getting started
+        url: /getting-started/
+      - title: Account & billing
+        url: /account-billing/
+      - title: Models
+        url: /models/
+      - title: Troubleshooting & FAQ
+        url: /troubleshooting/
+  - title: Product
+    items:
+      - title: IDE features
+        url: /ide-features/
+      - title: Marketplace
+        url: /marketplace/
+      - title: Local vault
+        url: /local-vault/
+      - title: SRE scheduler
+        url: /scheduler/
+  - title: Integrations
+    items:
+      - title: Integrations hub
+        url: /integrations/
+      - title: Confluence
+        url: /integrations/confluence/
+      - title: Google
+        url: /integrations/google/
+      - title: Observability
+        url: /integrations/observability/
+      - title: Kubernetes
+        url: /integrations/kubernetes/
+      - title: Docker
+        url: /integrations/docker/
+      - title: Figma
+        url: /integrations/figma/
+      - title: SAP
+        url: /integrations/sap/
+      - title: JFrog
+        url: /integrations/jfrog/
+      - title: GitHub
+        url: /integrations/github/
+      - title: PostgreSQL
+        url: /integrations/postgresql/
+  - title: Operations
+    items:
+      - title: Deployment
+        url: /deployment/

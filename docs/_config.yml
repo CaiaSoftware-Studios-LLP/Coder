@@ -1,9 +1,5 @@
 # Jekyll config for GitHub Pages (publish from /docs on main).
-# After first deploy: Settings → Pages → Build and deployment → GitHub Actions
-#   OR (classic) Source: Deploy from a branch → /docs + Jekyll.
-#
-# Project site (canonical): https://CaiaSoftware-Studios-LLP.github.io/Coder/
-# If org/repo changes, update baseurl/url and README.md + WELCOME.md canonical tables.
+# Canonical site: https://CaiaSoftware-Studios-LLP.github.io/Coder/
 baseurl: "/Coder"
 url: "https://CaiaSoftware-Studios-LLP.github.io"
 
@@ -13,9 +9,12 @@ description: User documentation for the Caia Coder agent UI, marketplace, vault,
 theme: minima
 permalink: pretty
 
+# Top bar: logo + wordmark only (sidebar lists all topics — matches in-app docs site).
 header_pages:
   - index.md
-  - audiences.md
+
+footer_pages:
+  - index.md
   - getting-started.md
   - account-billing.md
   - ide-features.md
@@ -23,9 +22,17 @@ header_pages:
   - local-vault.md
   - scheduler.md
   - integrations/index.md
-  - models.md
-  - deployment.md
-  - troubleshooting.md
+
+social_links:
+  - name: GitHub
+    url: https://github.com/CaiaSoftware-Studios-LLP/Coder
+    icon: github
+  - name: LinkedIn
+    url: https://www.linkedin.com/company/caiasoftware-studios-llp/
+    icon: linkedin
+  - name: Instagram
+    url: https://www.instagram.com/caiaplatform/
+    icon: instagram
 
 minima:
   skin: auto

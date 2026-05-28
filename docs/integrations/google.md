@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: docs
 title: Google Docs & Google Cloud
 permalink: /integrations/google/
 ---

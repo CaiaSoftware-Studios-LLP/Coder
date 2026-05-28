@@ -1,0 +1,63 @@
+<footer class="site-footer site-footer--docs" role="contentinfo">
+  {%- assign footer_paths = site.footer_pages | default: site.header_pages -%}
+  <div class="wrapper site-footer-inner">
+    <div class="site-footer-grid{% if site.social_links and site.social_links.size > 0 %} site-footer-grid--3col{% endif %}">
+      <div class="footer-col footer-col--brand">
+        <a class="footer-brand-link site-title-brand" href="{{ '/' | relative_url }}" title="{{ site.title | escape }}">
+          <img
+            class="site-logo"
+            src="{{ '/assets/images/caia-logo.png' | relative_url }}"
+            alt=""
+            width="24"
+            height="24"
+            decoding="async"
+          />
+          <span class="site-title-wordmark">Coder</span>
+          <span class="visually-hidden">{{ site.title | escape }}</span>
+        </a>
+      </div>
+
+      <nav class="footer-col footer-col--nav" aria-label="Footer">
+        <p class="footer-nav-label">Documentation</p>
+        <ul class="footer-nav-list">
+          {%- for path in footer_paths -%}
+            {%- assign my_page = site.pages | where: "path", path | first -%}
+            {%- if my_page.title -%}
+              <li>
+                <a href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </nav>
+
+      {%- if site.social_links and site.social_links.size > 0 -%}
+        <div class="footer-col footer-col--social">
+          <p class="footer-nav-label">Follow us</p>
+          <ul class="footer-social" role="list">
+            {%- for s in site.social_links -%}
+              <li>
+                <a
+                  class="footer-social-link"
+                  href="{{ s.url }}"
+                  aria-label="{{ s.name | escape }}"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  {% include footer-social.html icon=s.icon %}
+                </a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+  <div class="site-footer-meta">
+    <div class="wrapper site-footer-meta-inner">
+      <p class="footer-copyright">
+        © <span>{{ site.time | date: '%Y' }}</span> {{ site.title | escape }}. All rights reserved.
+      </p>
+    </div>
+  </div>
+</footer>

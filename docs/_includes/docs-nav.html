@@ -1,0 +1,48 @@
+<nav class="docs-nav" aria-label="Documentation topics">
+  {%- for section in site.data.docs_nav.sections -%}
+    {%- assign section_open = false -%}
+    {%- for item in section.items -%}
+      {%- if item.url == '/' -%}
+        {%- if page.url == '/' or page.url == '/index.html' -%}
+          {%- assign section_open = true -%}
+        {%- endif -%}
+      {%- elsif page.url == item.url -%}
+        {%- assign section_open = true -%}
+      {%- endif -%}
+    {%- endfor -%}
+    <details class="docs-nav-details"{% if section_open %} open{% endif %}>
+      <summary class="docs-nav-heading">{{ section.title }}</summary>
+      <ul class="docs-nav-list">
+        {%- for item in section.items -%}
+          {%- assign is_active = false -%}
+          {%- if item.url == '/' -%}
+            {%- if page.url == '/' or page.url == '/index.html' -%}
+              {%- assign is_active = true -%}
+            {%- endif -%}
+          {%- elsif page.url == item.url -%}
+            {%- assign is_active = true -%}
+          {%- endif -%}
+          <li class="docs-nav-item{% if item.subtopics %} docs-nav-item--has-subtopics{% endif %}">
+            <a
+              class="docs-nav-link{% if is_active %} docs-nav-link--active{% endif %}"
+              href="{{ item.url | relative_url }}"
+              {% if is_active %}aria-current="page"{% endif %}
+            >{{ item.title }}</a>
+            {%- if item.subtopics -%}
+              <ul class="docs-nav-sublist" role="list">
+                {%- for sub in item.subtopics -%}
+                  <li>
+                    <a
+                      class="docs-nav-link docs-nav-sublink"
+                      href="{{ item.url | relative_url }}#{{ sub.hash }}"
+                    >{{ sub.title }}</a>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </details>
+  {%- endfor -%}
+</nav>

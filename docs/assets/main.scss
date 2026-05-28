@@ -14,8 +14,14 @@ $caia-link: #c4b5fd;
 $caia-link-hover: #e9d5ff;
 $caia-code-bg: #0d0b12;
 
+:root {
+  /* Total visual height of fixed header (keep in sync with .site-header--docs inner padding + content) */
+  --docs-header-h: 2.75rem;
+}
+
 html {
   background-color: $caia-bg;
+  scroll-padding-top: calc(var(--docs-header-h) + 0.5rem);
 }
 
 body {
@@ -23,13 +29,131 @@ body {
   color: $caia-text;
 }
 
-.site-header {
+/* Skip link target / screen-reader-only (WCAG-friendly) */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Fixed header: slim bar, glass-style edge (doc-site pattern) */
+.site-header.site-header--docs {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: stretch;
+  min-height: var(--docs-header-h);
+  border-top: 0;
+  border-bottom: 1px solid rgba($caia-border, 0.55);
+  background-color: rgba(darken($caia-surface, 6%), 0.82);
+  -webkit-backdrop-filter: blur(14px) saturate(1.15);
+  backdrop-filter: blur(14px) saturate(1.15);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
+}
+
+/* Offset page so content starts below fixed header */
+.site-header.site-header--docs + main.page-content {
+  padding-top: var(--docs-header-h);
+}
+
+.site-header:not(.site-header--docs) {
   border-top: 0;
   border-bottom: 1px solid $caia-border;
   background-color: $caia-surface;
 }
 
+/* Header: flex row, align with docs content width */
+.site-header--docs .site-header-inner {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1.25rem;
+  box-sizing: border-box;
+}
+
+.site-header--docs .site-nav {
+  float: none;
+  line-height: 1.2;
+}
+
+.site-header--docs .site-nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.15rem 0.35rem;
+}
+
+.site-header--docs .site-nav .page-link {
+  display: inline-block;
+  padding: 0.28rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8125rem;
+  line-height: 1.35;
+}
+
+.site-nav-toggle {
+  cursor: pointer;
+}
+
+@media screen and (min-width: 38rem) {
+  .site-header--docs .site-nav {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    justify-content: flex-end;
+    min-width: 0;
+  }
+
+  .site-header--docs .site-nav-toggle {
+    display: none;
+  }
+
+  .site-header--docs .nav-trigger ~ .site-nav-links {
+    display: flex !important;
+    position: static !important;
+    float: none !important;
+    clear: none !important;
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+}
+
 /* Header: Caia mark (PNG) + “Coder” gradient wordmark */
+.site-header--docs .site-title-brand,
+.site-header--docs .site-title-brand:visited {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.site-header--docs .site-logo {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  display: block;
+  object-fit: contain;
+}
+
 .site-title-brand,
 .site-title-brand:visited {
   display: inline-flex;
@@ -48,6 +172,11 @@ body {
 }
 
 /* “Coder” — same gradient as product wordmark; logo image carries Caia colors */
+.site-header--docs .site-title-wordmark {
+  font-size: 1rem;
+  letter-spacing: -0.02em;
+}
+
 .site-title-wordmark {
   line-height: 1.2;
   color: #c4b5fd !important;
@@ -101,9 +230,187 @@ body {
 }
 
 .site-footer {
-  border-top: 1px solid $caia-border;
+  border-top: 1px solid rgba($caia-border, 0.7);
   background-color: $caia-surface;
   color: $caia-muted;
+}
+
+/* Footer: slim grid (brand | docs | social) + thin copyright bar */
+.site-footer--docs .site-footer-inner {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1.125rem 1.25rem 1rem;
+  box-sizing: border-box;
+}
+
+.site-footer-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 1rem 1.75rem;
+  align-items: start;
+}
+
+.site-footer-grid--3col {
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1rem 1.5rem;
+}
+
+.footer-col--brand {
+  min-width: 0;
+}
+
+.site-footer--docs .footer-col--brand .footer-brand-link {
+  margin: 0;
+}
+
+.site-footer--docs .footer-col--brand .site-logo {
+  width: 24px;
+  height: 24px;
+}
+
+.footer-col--nav {
+  min-width: 0;
+}
+
+.footer-nav-label {
+  margin: 0 0 0.45rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: mix($caia-muted, $caia-text, 80%);
+}
+
+.footer-nav-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-nav-list li {
+  margin: 0 0 0.28rem;
+}
+
+.footer-nav-list a {
+  font-size: 0.8125rem;
+  line-height: 1.35;
+  text-decoration: none;
+  color: $caia-muted !important;
+
+  &:hover {
+    color: $caia-link-hover !important;
+  }
+}
+
+.footer-col--social {
+  min-width: 0;
+}
+
+.footer-social {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-social li {
+  margin: 0;
+}
+
+.footer-social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 6px;
+  border: 1px solid rgba($caia-border, 0.75);
+  background-color: rgba(0, 0, 0, 0.12);
+  color: $caia-muted !important;
+  text-decoration: none !important;
+  transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+
+  &:hover {
+    color: $caia-link-hover !important;
+    border-color: mix($caia-link, $caia-border, 35%);
+    background-color: rgba(196, 181, 253, 0.06);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $caia-link;
+    outline-offset: 1px;
+  }
+}
+
+.footer-social-svg {
+  display: block;
+  flex-shrink: 0;
+  width: 17px;
+  height: 17px;
+}
+
+.footer-social-fallback {
+  font-size: 1rem;
+  opacity: 0.7;
+}
+
+.site-footer-meta {
+  border-top: 1px solid rgba($caia-border, 0.55);
+  background-color: rgba(darken($caia-surface, 3%), 0.65);
+}
+
+.site-footer-meta-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0.45rem 1.25rem;
+  box-sizing: border-box;
+}
+
+.footer-copyright {
+  margin: 0;
+  font-size: 0.6875rem;
+  line-height: 1.35;
+  color: mix($caia-muted, $caia-text, 72%);
+  text-align: center;
+}
+
+@media screen and (max-width: 52rem) {
+  .site-footer-grid--3col {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .footer-col--social {
+    grid-column: 1 / -1;
+    padding-top: 0.65rem;
+    border-top: 1px solid rgba($caia-border, 0.5);
+  }
+
+  .footer-social {
+    gap: 0.4rem;
+  }
+}
+
+@media screen and (max-width: 36rem) {
+  .site-footer-grid,
+  .site-footer-grid--3col {
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
+  }
+
+  .footer-col--social {
+    grid-column: auto;
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .footer-col--nav {
+    padding-top: 0.65rem;
+    border-top: 1px solid rgba($caia-border, 0.5);
+  }
 }
 
 .footer-heading,
@@ -167,6 +474,7 @@ table tbody tr:nth-child(even) {
   background-color: $caia-bg !important;
 }
 
+/* Slightly lift every other row for scanability (still dark, not white) */
 table tbody tr:nth-child(even) {
   background-color: lighten($caia-bg, 3%) !important;
 }
@@ -180,11 +488,13 @@ table tbody th {
   color: $caia-text !important;
 }
 
+/* Inline code inside cells keeps dark chip style */
 table code {
   background-color: $caia-code-bg !important;
   color: #e2d9f5 !important;
 }
 
+/* Minima blog layout uses .post-content — mirror table rules */
 .post-content table,
 .post-content table tbody tr,
 .post-content table tbody tr:nth-child(odd),
@@ -210,6 +520,7 @@ table code {
   background-color: $caia-surface !important;
 }
 
+/* Kill stray light panels */
 .page-content figure,
 .post-content figure {
   background-color: transparent;
@@ -233,6 +544,7 @@ hr {
   color: $caia-muted;
 }
 
+/* Rouge / highlight blocks */
 .highlight {
   background-color: $caia-code-bg !important;
   border: 1px solid $caia-border;
@@ -240,4 +552,377 @@ hr {
 
 .highlighter-rouge .highlight {
   background-color: $caia-code-bg !important;
+}
+
+/* --- Documentation shell (hub + left nav) --- */
+.page-content > .wrapper:has(.docs-shell) {
+  max-width: 1280px;
+  width: 100%;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  box-sizing: border-box;
+}
+
+.docs-shell {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 0.35rem 0 2rem;
+}
+
+@media screen and (max-width: 52rem) {
+  .docs-shell {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+.docs-sidebar {
+  flex: 0 0 15rem;
+  position: sticky;
+  top: calc(var(--docs-header-h) + 0.4rem);
+  align-self: flex-start;
+  max-height: calc(100vh - var(--docs-header-h) - 1rem);
+  overflow: auto;
+  padding: 0.55rem 0.65rem 0.75rem;
+  border: 1px solid rgba($caia-border, 0.85);
+  border-radius: 6px;
+  background-color: rgba($caia-surface, 0.92);
+}
+
+@media screen and (max-width: 52rem) {
+  .docs-sidebar {
+    position: relative;
+    top: auto;
+    max-height: none;
+    width: 100%;
+  }
+}
+
+/* Collapsible nav sections (<details> / <summary>) */
+.docs-nav-details {
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid $caia-border;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.docs-nav-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0.55rem 0.15rem 0.55rem 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $caia-muted;
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+
+  &::after {
+    content: "";
+    flex-shrink: 0;
+    width: 0.4rem;
+    height: 0.4rem;
+    margin-left: auto;
+    border-right: 2px solid $caia-muted;
+    border-bottom: 2px solid $caia-muted;
+    transform: rotate(-45deg);
+    transition: transform 0.15s ease;
+    opacity: 0.85;
+  }
+}
+
+.docs-nav-details[open] .docs-nav-heading::after {
+  transform: rotate(45deg);
+}
+
+.docs-nav-heading:focus {
+  outline: none;
+}
+
+.docs-nav-heading:focus-visible {
+  outline: 2px solid $caia-link;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.docs-nav-details:first-child .docs-nav-heading {
+  padding-top: 0.15rem;
+}
+
+.docs-nav-list {
+  margin: 0 0 0.65rem;
+  padding: 0 0 0 0.35rem;
+  list-style: none;
+}
+
+.docs-nav-link {
+  display: block;
+  padding: 0.28rem 0.35rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  line-height: 1.35;
+  color: $caia-muted;
+  text-decoration: none;
+}
+
+.docs-nav-link:hover {
+  color: $caia-link-hover;
+  background-color: rgba(196, 181, 253, 0.08);
+}
+
+.docs-nav-link--active {
+  color: $caia-text;
+  background-color: rgba(196, 181, 253, 0.12);
+  font-weight: 600;
+}
+
+/* Nested topics (e.g. Settings → Overview, Account, …) */
+.docs-nav-item--has-subtopics > .docs-nav-link {
+  font-weight: 600;
+}
+
+.docs-nav-sublist {
+  margin: 0.35rem 0 0.5rem;
+  padding: 0 0 0 0.65rem;
+  list-style: none;
+  border-left: 1px solid rgba($caia-border, 0.85);
+}
+
+.docs-nav-sublist li {
+  margin: 0 0 0.2rem;
+}
+
+.docs-nav-sublink {
+  display: block;
+  padding: 0.22rem 0.35rem;
+  border-radius: 4px;
+  font-size: 0.8125rem;
+  line-height: 1.35;
+  color: mix($caia-muted, $caia-text, 35%);
+  text-decoration: none;
+}
+
+.docs-nav-sublink:hover {
+  color: $caia-link-hover;
+  background-color: rgba(196, 181, 253, 0.06);
+}
+
+.docs-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.docs-main--home .post-content > *:first-child {
+  margin-top: 0;
+}
+
+.docs-post-header .post-title {
+  margin-bottom: 0.35rem;
+}
+
+.docs-lead {
+  margin: 0 0 1.25rem;
+  font-size: 1.1rem;
+  line-height: 1.55;
+  color: $caia-muted;
+}
+
+/* Docs pages: major sections (h2) + card-like subsections (h3 blocks) */
+.docs-article .post-content > h2 {
+  margin-top: 2.35rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid rgba($caia-border, 0.65);
+  font-size: 1.35rem;
+  scroll-margin-top: calc(var(--docs-header-h) + 0.75rem);
+}
+
+.docs-article .post-content > h2:first-of-type {
+  margin-top: 0.35rem;
+}
+
+.docs-article .post-content .docs-subsection {
+  margin: 1.35rem 0 0;
+  padding: 1rem 1.15rem 1.05rem;
+  border-radius: 8px;
+  border: 1px solid rgba($caia-border, 0.75);
+  background-color: rgba($caia-surface, 0.38);
+}
+
+.docs-article .post-content .docs-subsection--accent {
+  border-left: 3px solid rgba($caia-link, 0.55);
+  background-color: rgba($caia-surface, 0.52);
+}
+
+.docs-article .post-content .docs-subsection > h3 {
+  margin: 0 0 0.7rem;
+  padding: 0 0 0.55rem;
+  border-bottom: 1px solid rgba($caia-border, 0.55);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  scroll-margin-top: calc(var(--docs-header-h) + 0.75rem);
+}
+
+.docs-article .post-content .docs-subsection p,
+.docs-article .post-content .docs-subsection ul,
+.docs-article .post-content .docs-subsection ol {
+  margin: 0 0 0.65rem;
+}
+
+.docs-article .post-content .docs-subsection ul,
+.docs-article .post-content .docs-subsection ol {
+  padding-left: 1.2rem;
+}
+
+.docs-article .post-content .docs-subsection > *:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Home hub */
+.docs-hero {
+  margin: 0 0 2rem;
+  padding: 1.75rem 1.5rem;
+  border: 1px solid $caia-border;
+  border-radius: 10px;
+  background: linear-gradient(145deg, lighten($caia-surface, 2%) 0%, $caia-bg 55%);
+}
+
+.docs-hero-eyebrow {
+  margin: 0 0 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $caia-link;
+}
+
+.docs-hero-title {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  line-height: 1.15;
+}
+
+.docs-hero-sub {
+  margin: 0;
+  max-width: 44rem;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: $caia-muted;
+}
+
+.docs-hero-note {
+  margin: 0.75rem 0 0;
+  max-width: 44rem;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: $caia-muted;
+}
+
+.docs-section-title {
+  margin: 2rem 0 0.75rem;
+  font-size: 1.15rem;
+}
+
+.docs-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 1rem;
+  margin: 0 0 2rem;
+}
+
+.docs-card {
+  display: block;
+  padding: 1rem 1.1rem;
+  border: 1px solid $caia-border;
+  border-radius: 8px;
+  background-color: $caia-surface;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.docs-card:hover {
+  border-color: mix($caia-link, $caia-border, 35%);
+  background-color: lighten($caia-surface, 2%);
+}
+
+.docs-card-title {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: $caia-text;
+}
+
+.docs-card-desc {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: $caia-muted;
+}
+
+.docs-figure {
+  margin: 1.5rem 0 2rem;
+  padding: 0;
+}
+
+.docs-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid $caia-border;
+  background-color: $caia-code-bg;
+}
+
+.docs-figure figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: $caia-muted;
+}
+
+/* Product screenshots: cap height so long captures stay readable in the column */
+.docs-figure--screenshot img {
+  max-width: 100%;
+  max-height: min(88vh, 960px);
+  width: auto;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.docs-callout {
+  margin: 1.5rem 0;
+  padding: 1rem 1.1rem;
+  border-left: 3px solid $caia-link;
+  border-radius: 0 8px 8px 0;
+  background-color: rgba(196, 181, 253, 0.06);
+  color: $caia-text;
+}
+
+.docs-callout-title {
+  margin: 0 0 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: $caia-link-hover;
+}
+
+.docs-callout p:last-child {
+  margin-bottom: 0;
 }
